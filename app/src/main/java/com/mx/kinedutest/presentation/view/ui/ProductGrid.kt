@@ -10,11 +10,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.mx.kinedutest.domain.model.Article
 import com.mx.kinedutest.domain.model.ArticleData
 
 @Composable
-fun ProductGrid(articles: List<Article>) {
+fun ProductGrid(articles: List<Article>, navController: NavController) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(3),
         modifier = Modifier.fillMaxSize(),
@@ -23,7 +24,7 @@ fun ProductGrid(articles: List<Article>) {
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         items(articles) { article ->
-            ProductCard(product = article)
+            ProductCard(product = article, navController = navController)
         }
     }
 }
@@ -48,5 +49,4 @@ val sampleArticles = listOf(
 @Preview(showBackground = true)
 @Composable
 fun ProductGridPreview() {
-    ProductGrid(articles = sampleArticles)
 }

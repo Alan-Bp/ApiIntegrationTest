@@ -7,7 +7,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.mx.kinedutest.presentation.view.ui.HomeScreen
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.rememberNavController
+import com.mx.kinedutest.presentation.view.navigation.NavigationGraph
 import com.mx.kinedutest.presentation.viewmodel.HomeViewModel
 import com.mx.kinedutest.ui.theme.KineduTestTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +23,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             KineduTestTheme {
-                HomeScreen(homeViewModel)
+                val navController = rememberNavController()
+                NavigationGraph(navController = navController, homeViewModel = homeViewModel)
+
             }
         }
     }
@@ -29,8 +33,10 @@ class MainActivity : ComponentActivity() {
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun MainActivityPreview() {
+    val homeViewModel: HomeViewModel = viewModel()
     KineduTestTheme {
-        HomeScreen()
+        val navController = rememberNavController()
+        NavigationGraph(navController = navController, homeViewModel = homeViewModel)
     }
 }
