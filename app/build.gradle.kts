@@ -73,6 +73,11 @@ dependencies {
     // Lifecycle
     implementation(libs.lifecycle.viewmodel)
     implementation(libs.lifecycle.livedata)
+    // ROOM
+    implementation(libs.room.runtime)
+    ksp(libs.room.compiler)
+    implementation(libs.room.ktx)
+
     implementation(libs.gson.gson)
     implementation(libs.data.reflect)
     testImplementation(libs.junit)

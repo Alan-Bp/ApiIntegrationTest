@@ -1,6 +1,5 @@
 package com.mx.kinedutest.presentation.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mx.kinedutest.data.repository.ArticleRepository
@@ -10,6 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
@@ -31,7 +31,6 @@ class HomeViewModel @Inject constructor(
     private val _searchQuery = MutableStateFlow("")
     val searchQuery: StateFlow<String> = _searchQuery
 
-
     init {
         fetchProducts()
     }
@@ -44,16 +43,12 @@ class HomeViewModel @Inject constructor(
                 val result = repository.getArticles()
                 if (result.isSuccess) {
                     _products.value = result.getOrNull() ?: emptyList()
-                    _filteredProducts.value =
-                        _products.value
-                    Log.d("VIEW_MODEL", "Products loaded successfully: ${_products.value}")
+                    _filteredProducts.value = _products.value
                 } else {
                     _error.value = result.exceptionOrNull()?.message ?: "Unknown error"
-                    Log.e("VIEW_MODEL", "Error fetching products: $_error")
                 }
             } catch (e: Exception) {
                 _error.value = e.message
-                Log.e("VIEW_MODEL", "Exception: ${e.message}", e)
             } finally {
                 _isLoading.value = false
             }
