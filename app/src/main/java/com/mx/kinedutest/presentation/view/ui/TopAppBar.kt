@@ -10,27 +10,38 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.mx.kinedutest.R
+import com.mx.kinedutest.presentation.viewmodel.HomeViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopAppBarCustom() {
+fun TopAppBarCustom(viewModel: HomeViewModel) {
     MediumTopAppBar(
         title = { },
         actions = {
-            SearchBar()
+            SearchBar(viewModel = viewModel)
         },
         colors = TopAppBarDefaults.mediumTopAppBarColors(
             containerColor = colorResource(id = R.color.kin_blue),
             scrolledContainerColor = MaterialTheme.colorScheme.surface
         ),
         modifier = Modifier
-            .height(70.dp)
+            .height(90.dp)
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = true)
 @Composable
 fun TopAppBarPreview() {
-    TopAppBarCustom()
+    MediumTopAppBar(
+        title = { },
+        actions = { SearchBar(viewModel = viewModel()) },
+        colors = TopAppBarDefaults.mediumTopAppBarColors(
+            containerColor = colorResource(id = R.color.kin_blue),
+            scrolledContainerColor = MaterialTheme.colorScheme.surface
+        ),
+        modifier = Modifier.height(90.dp)
+    )
 }
