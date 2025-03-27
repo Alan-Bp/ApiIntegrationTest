@@ -27,7 +27,7 @@ fun TopAppBarCustom(viewModel: HomeViewModel) {
             scrolledContainerColor = MaterialTheme.colorScheme.surface
         ),
         modifier = Modifier
-            .height(90.dp)
+            .height(115.dp)
     )
 }
 

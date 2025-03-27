@@ -59,7 +59,7 @@ fun SearchBar(viewModel: HomeViewModel) {
         ),
         modifier = Modifier
             .fillMaxWidth()
-            .height(56.dp)
+            .height(66.dp)
             .background(Color.Gray.copy(alpha = 0.1f), shape = RectangleShape)
             .clip(androidx.compose.foundation.shape.RoundedCornerShape(12.dp))
             .focusRequester(focusRequester),

@@ -2,6 +2,7 @@ package com.mx.kinedutest.presentation.view.ui
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,18 +19,19 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.mx.kinedutest.R
 import com.mx.kinedutest.domain.model.Article
-import com.mx.kinedutest.domain.model.ArticleData
 
 
 @Composable
-fun ProductCard(product: Article) {
+fun ProductCard(product: Article, navController: NavController) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(200.dp)
-            .padding(8.dp),
+            .height(220.dp)
+            .padding(8.dp)
+            .clickable { navController.navigate("details/${product.id}") },
         elevation = CardDefaults.elevatedCardElevation(4.dp),
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(
@@ -43,7 +45,7 @@ fun ProductCard(product: Article) {
                 contentDescription = product.name,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(120.dp)
+                    .height(110.dp)
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
@@ -64,13 +66,4 @@ fun ProductCard(product: Article) {
 @Preview(showBackground = true)
 @Composable
 fun ProductCardPreview() {
-    val sampleArticleData = ArticleData(
-        description = "Descripción del producto de ejemplo"
-    )
-    val sampleArticle = Article(
-        id = "10",
-        name = "Producto Ejemplo",
-        data = sampleArticleData
-    )
-    ProductCard(product = sampleArticle)
 }

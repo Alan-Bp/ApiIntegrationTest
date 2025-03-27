@@ -15,6 +15,8 @@ lifecycleVersion = "2.8.7"
 hilt = "2.50"
 hiltCompose = "1.2.0"
 ksp = "2.0.21-1.0.27"
+gsonVer = "2.8.8"
+reflectVer = "1.9.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -43,6 +45,8 @@ lifecycle-livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata-
 hiltAndroid = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hiltCompiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 hiltNavigationCompose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltCompose" }
+gson-gson = { group = "com.google.code.gson", name = "gson", version.ref = "gsonVer" }
+data-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "reflectVer" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

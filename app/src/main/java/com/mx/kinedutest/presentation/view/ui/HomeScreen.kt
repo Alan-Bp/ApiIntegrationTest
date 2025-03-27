@@ -12,11 +12,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import com.mx.kinedutest.presentation.viewmodel.HomeViewModel
 
 
 @Composable
-fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
+fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel = hiltViewModel()) {
     val products = viewModel.filteredProducts.collectAsState().value
     val isLoading = viewModel.isLoading.collectAsState().value
     val error = viewModel.error.collectAsState().value
@@ -30,7 +31,8 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
                 when {
                     isLoading -> LoadingIndicator()
                     error != null -> ErrorText(error)
-                    else -> ProductGrid(articles = products)
+                    else -> ProductGrid(articles = products, navController = navController)
+
                 }
             }
         }
