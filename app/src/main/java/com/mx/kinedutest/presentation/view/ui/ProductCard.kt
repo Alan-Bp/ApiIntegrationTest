@@ -19,13 +19,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mx.kinedutest.R
+import com.mx.kinedutest.domain.model.Article
+import com.mx.kinedutest.domain.model.ArticleData
 
 
 @Composable
-fun ProductCard(product: Product) {
+fun ProductCard(product: Article) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
+            .height(200.dp)
             .padding(8.dp),
         elevation = CardDefaults.elevatedCardElevation(4.dp),
         shape = RoundedCornerShape(8.dp),
@@ -36,14 +39,24 @@ fun ProductCard(product: Product) {
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Image(
-                painter = painterResource(id = product.imageRes),
+                painter = painterResource(id = R.drawable.shoping_phone),
                 contentDescription = product.name,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(120.dp)
             )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(text = product.name, style = MaterialTheme.typography.titleMedium)
             Spacer(modifier = Modifier.height(4.dp))
-            Text(text = product.description, style = MaterialTheme.typography.bodySmall)
+            Text(
+                text = product.name, style = MaterialTheme.typography.titleMedium,
+                maxLines = 2
+            )
+            Spacer(modifier = Modifier.height(2.dp))
+            product.data?.description?.let {
+                Text(
+                    text = it,
+                    style = MaterialTheme.typography.bodySmall
+                )
+            }
         }
     }
 }
@@ -51,10 +64,13 @@ fun ProductCard(product: Product) {
 @Preview(showBackground = true)
 @Composable
 fun ProductCardPreview() {
-    val sampleProduct = Product(
-        name = "Producto Ejemplo",
-        description = "Este es un producto de prueba",
-        imageRes = R.drawable.shoping_phone
+    val sampleArticleData = ArticleData(
+        description = "Descripción del producto de ejemplo"
     )
-    ProductCard(sampleProduct)
+    val sampleArticle = Article(
+        id = "10",
+        name = "Producto Ejemplo",
+        data = sampleArticleData
+    )
+    ProductCard(product = sampleArticle)
 }
